@@ -2,17 +2,24 @@ import React from 'react';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import {Link} from "react-router-dom";
+import {Link , useHistory} from "react-router-dom";
 import {useStateValue} from "./StateProvider";
 import {auth} from "./firebase";
 
 function Header() {
 
     const [{basket,user}, dispatch] = useStateValue();
+    const history = useHistory();
 
     const handleOnClick = () => {
         if (user) {
             auth.signOut();
+            history.push('/');
+            dispatch({
+                type:'CLEAR_BASKET'
+            })
+
+
         }
     }
 
