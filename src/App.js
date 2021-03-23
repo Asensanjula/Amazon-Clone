@@ -5,8 +5,10 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import React, {useEffect} from "react";
 import Checkout from "./Checkout";
 import Login from "./Login";
+import Test from "./Test"
 import {auth} from "./firebase";
 import {useStateValue} from "./StateProvider";
+import Payment from "./Payment";
 
 function App() {
 
@@ -36,6 +38,10 @@ function App() {
                 <Switch>
                     <Route path="/login">
                         <Login/>
+                    </Route>
+                    <Route path="/payments">
+                        <Header/>
+                        <Payment/>
                     </Route>
                     <Route path="/checkout">
                         <Header/>
