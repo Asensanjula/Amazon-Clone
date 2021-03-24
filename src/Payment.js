@@ -6,7 +6,7 @@ import {Link , useHistory} from "react-router-dom";
 import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import {getBasketTotal} from "./reducer";
-import axios from "axios";
+import axios from './Axios';
 
 function Payment() {
 
@@ -19,7 +19,7 @@ function Payment() {
 
     const [error , setError] = useState(null);
     const [disabled , setDisabled] = useState(true);
-    const [clientSecret , setClientSecret] = useState('');
+    const [clientSecret , setClientSecret] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
@@ -31,12 +31,15 @@ function Payment() {
                 url:`/payments/create?total=${getBasketTotal(basket) * 100}`
             });
 
+            console.log("Response >>>" , response.data.clientSecret)
             setClientSecret(response.data.clientSecret)
         }
 
         getClientSecret();
 
     },[basket]);
+
+    console.log("Client Secret >>> " , clientSecret)
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
