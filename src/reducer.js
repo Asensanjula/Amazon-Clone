@@ -3,6 +3,11 @@ export const initialState = {
     user : null,
 };
 
+// Selector
+export const getBasketTotal = (basket) => {
+    return basket?.reduce((accumulator, item) => accumulator + item.price, 0);
+}
+
 const reducer = (state , action) => {
     switch (action.type) {
         case 'ADD_TO_BASKET':
